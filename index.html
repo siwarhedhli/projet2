@@ -27,6 +27,14 @@
 
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init("PdTHi-OEptOW0D1_i"); // Remplacez par votre user ID
+    })();
+</script>
+
 </head>
 
 <body>
@@ -1122,17 +1130,17 @@
                             </div>
 
                             <div class="tj-contact-form">
-                                <form action="https://formspree.io/f/mwpkegnb" method="post">
+                                <form id="contact-form">
                                     <div class="row gx-3">
                                         <div class="col-sm-6">
                                             <div class="form_group">
-                                                <input type="text" name="fname" id="fname" placeholder="First name"
+                                                <input type="text" name="first_name" id="first_name" placeholder="First name"
                                                     autocomplete="off">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form_group">
-                                                <input type="text" name="lname" id="lname" placeholder="Last name"
+                                                <input type="text" name="last_name" id="last_name" placeholder="Last name"
                                                     autocomplete="off">
                                             </div>
                                         </div>
@@ -1165,9 +1173,6 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <!-- Champ caché pour redirection -->
-                                           <input type="hidden" name="_next" value="https://siwarhedhli.github.io/projet2/blog-details.html">
-
                                             <div class="form_btn">
                                                 <button type="submit" class="btn tj-btn-primary">Send Message</button>
                                             </div>
@@ -1217,6 +1222,23 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Empêche le rechargement de la page
+        
+                // Envoie l'e-mail via EmailJS
+                emailjs.sendForm('service_3v01lcc', 'template_kz60egh', this)
+                    .then(function() {
+                        console.log('Succès ! Votre message a été envoyé.');
+                        // Redirection vers la page de remerciement
+                        window.location.href = "https://facebook.com";
+                    }, function(error) {
+                        console.log('Échec du message : ', error);
+                    });
+            });
+        </script>
+
         <!-- CONTACT SECTION END -->
     </main>
 
