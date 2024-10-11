@@ -1179,6 +1179,11 @@
                                         </div>
                                     </div>
                                 </form>
+
+                                <!-- Ici sera affiché le message de confirmation -->
+                                <p id="confirmation-message" style="display:none; color:green;">Merci, votre message a bien été envoyé.</p>
+                                <p id="error-message" style="display:none; color:red;">Désolé, une erreur s'est produite lors de l'envoi du message.</p>
+
                             </div>
                         </div>
                     </div>
@@ -1223,21 +1228,29 @@
             </div>
         </section>
 
-        <script>
-            document.getElementById('contact-form').addEventListener('submit', function(event) {
-                event.preventDefault(); // Empêche le rechargement de la page
-        
-                // Envoie l'e-mail via EmailJS
-                emailjs.sendForm('service_3v01lcc', 'template_kz60egh', this)
-                    .then(function() {
-                        console.log('Succès ! Votre message a été envoyé.');
-                        // Redirection vers la page de remerciement
-                        window.location.href = "https://facebook.com";
-                    }, function(error) {
-                        console.log('Échec du message : ', error);
-                    });
-            });
-        </script>
+        <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+
+
+   document.getElementById('contact-form').addEventListener('submit', function(event) {
+       event.preventDefault(); // Empêche le rechargement de la page
+
+       // Envoie l'e-mail via EmailJS
+       emailjs.sendForm('service_3v01lcc', 'template_kz60egh', this)
+           .then(function() {
+               // Si l'envoi est réussi, afficher un message de confirmation
+               document.getElementById('confirmation-message').style.display = 'block';
+               document.getElementById('error-message').style.display = 'none';
+           }, function(error) {
+               // En cas d'échec, afficher un message d'erreur
+               document.getElementById('error-message').style.display = 'block';
+               document.getElementById('confirmation-message').style.display = 'none';
+           });
+   });
+</script>
+
+
+      
 
         <!-- CONTACT SECTION END -->
     </main>
